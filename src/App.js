@@ -1,5 +1,5 @@
 import ExpenseItem from "./components/ExpenseItem";
-
+import Card from '../src/components/Card'
 function App() {
   const expenses = [
     {
@@ -35,6 +35,7 @@ function App() {
   return (
     <div>
       <h2>Let's get started!</h2>
+      <Card>
       {expenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
@@ -44,6 +45,7 @@ function App() {
           location={expense.location}
         />
       ))}
+      </Card>
     </div>
   );
 }
