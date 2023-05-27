@@ -1,3 +1,4 @@
+import React from 'react';
 import ExpenseItem from "./components/ExpenseItem";
 import Card from '../src/components/Card'
 function App() {
