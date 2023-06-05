@@ -1,5 +1,6 @@
 import React from 'react';
 import ExpenseItem from "./components/Expenses/ExpenseItem";
+import ExpenseForm from "./components/Expenses/ExpenseForm";
 import Card from './components/UI/Card'
 import "../src/components/Expenses/Expense.css";
 const App=()=> {
@@ -37,6 +38,7 @@ const App=()=> {
   return (
     <div>
       <h2>Let's get started!</h2>
+      <ExpenseForm/>
       <Card className='expenses'>
       {expenses.map((expense) => (
         <ExpenseItem
