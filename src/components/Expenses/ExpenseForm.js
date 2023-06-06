@@ -5,6 +5,7 @@ import Card from '../UI/Card';
 const ExpenseForm = () => {
     const OnChangeval=(e)=>{
         console.log(e.target.value);
+        // sw
     }
   return (
     <form>
