@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ExpenseItem from "./components/Expenses/ExpenseItem";
-import Card from './components/UI/Card'
+import Card from './components/UI/Card';
 import "../src/components/Expenses/Expense.css";
 import NewExpense from './components/NewExpense/NewExpense';
-const App=()=> {
-  const expenses = [
+
+const App = () => {
+  const [expenses, setExpenses] = useState([
     {
       id: "e1",
       title: "Toilet Paper",
@@ -33,23 +34,28 @@ const App=()=> {
       date: new Date(2021, 5, 12),
       location: "Delhi",
     },
-  ];
+  ]);
+
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => {
+      return [...prevExpenses, expense];
+    });
+  };
 
   return (
     <div>
       <h2>Let's get started!</h2>
-      {/* <ExpenseForm/> */}
-      <NewExpense/>
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Card className='expenses'>
-      {expenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          location={expense.location}
-        />
-      ))}
+        {expenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            location={expense.location}
+          />
+        ))}
       </Card>
     </div>
   );
