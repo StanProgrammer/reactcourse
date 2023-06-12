@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import ExpenseItem from "./components/Expenses/ExpenseItem";
-import Card from './components/UI/Card';
+import Card from "./components/UI/Card";
 import "../src/components/Expenses/Expense.css";
-import NewExpense from './components/NewExpense/NewExpense';
+import NewExpense from "./components/NewExpense/NewExpense";
+import ExpenseFilter from "./components/Expenses/ExpenseFilter";
 
 const DUMMY_EXPENSES = [
   {
@@ -33,24 +34,36 @@ const DUMMY_EXPENSES = [
     date: new Date(2021, 5, 12),
     location: "Delhi",
   },
-]
+];
 
 const App = () => {
-  const [expenses, setExpenses ] = useState(DUMMY_EXPENSES)
+  const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+  const [selectedYear, setSelectedYear] = useState("all");
 
   const addExpenseHandler = (expense) => {
-    setExpenses(prevExpense=>{
-      return [expense, ...prevExpense]
-    })
-    
+    setExpenses((prevExpenses) => {
+      return [expense, ...prevExpenses];
+    });
   };
+
+  const filterExpenses = (selectedYear) => {
+    setSelectedYear(selectedYear);
+  };
+
+  let filteredExpenses = expenses;
+  if (selectedYear !== "all") {
+    filteredExpenses = expenses.filter(
+      (expense) => expense.date.getFullYear().toString() === selectedYear
+    );
+  }
 
   return (
     <div>
       <h2>Let's get started!</h2>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <Card className='expenses'>
-        {expenses.map((expense) => (
+      <Card className="expenses">
+        <ExpenseFilter onFilter={filterExpenses} />
+        {filteredExpenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}
@@ -62,8 +75,6 @@ const App = () => {
       </Card>
     </div>
   );
-}
+};
 
-
-  
 export default App;
