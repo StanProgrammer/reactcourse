@@ -4,6 +4,7 @@ import Card from "./components/UI/Card";
 import "../src/components/Expenses/Expense.css";
 import NewExpense from "./components/NewExpense/NewExpense";
 import ExpenseFilter from "./components/Expenses/ExpenseFilter";
+import ExpenseList from "./components/Expenses/ExpenseList";
 
 const DUMMY_EXPENSES = [
   {
@@ -56,22 +57,13 @@ const App = () => {
       (expense) => expense.date.getFullYear().toString() === selectedYear
     );
   }
-
   return (
     <div>
       <h2>Let's get started!</h2>
       <NewExpense onAddExpense={addExpenseHandler} />
       <Card className="expenses">
         <ExpenseFilter onFilter={filterExpenses} />
-        {filteredExpenses.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-            location={expense.location}
-          />
-        ))}
+        <ExpenseList items={filteredExpenses}/>
       </Card>
     </div>
   );

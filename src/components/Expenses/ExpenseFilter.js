@@ -1,4 +1,5 @@
 import React from 'react';
+import './ExpenseFilter.css';
 
 const ExpenseFilter = ({ onFilter }) => {
   const yearChangeHandler = (event) => {
@@ -6,7 +7,8 @@ const ExpenseFilter = ({ onFilter }) => {
   };
 
   return (
-    <div className="filter-container">
+    <div className='expenses-filter'>
+      <div className='expenses-filter__control'>
       <h1>Filter by year</h1>
       <select onChange={yearChangeHandler}>
         <option value="all">All</option>
@@ -15,6 +17,7 @@ const ExpenseFilter = ({ onFilter }) => {
         <option value="2019">2019</option>
        
       </select>
+    </div>
     </div>
   );
 };
