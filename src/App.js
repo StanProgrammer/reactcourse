@@ -5,6 +5,7 @@ import "../src/components/Expenses/Expense.css";
 import NewExpense from "./components/NewExpense/NewExpense";
 import ExpenseFilter from "./components/Expenses/ExpenseFilter";
 import ExpenseList from "./components/Expenses/ExpenseList";
+import ExpenseButton from "./components/NewExpense/ExpenseButton";
 
 const DUMMY_EXPENSES = [
   {
@@ -60,7 +61,8 @@ const App = () => {
   return (
     <div>
       <h2>Let's get started!</h2>
-      <NewExpense onAddExpense={addExpenseHandler} />
+      {/* <NewExpense onAddExpense={addExpenseHandler} /> */}
+      <ExpenseButton onSaveExpenseData={addExpenseHandler}/>
       <Card className="expenses">
         <ExpenseFilter onFilter={filterExpenses} />
         <ExpenseList items={filteredExpenses}/>
